@@ -1,0 +1,15 @@
+VITE - new bundle manager
+
+PROJECT CREATION - 
+
+npx create-react-app PROJECT_NAME --template=typescript
+
+BUILD PROJECT FOR FINAL DEPLOYMENT - 
+
+npm run build
+
+build = public(modification in index.html) + compiled src(typescript to javascript)
+
+DEV MODE - 
+npm run start
+npm start
