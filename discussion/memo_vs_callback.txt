@@ -1,0 +1,28 @@
+useMemo - cache , to derive data from other raw datas
+   - triggerd Automatically
+   - cache the data , this will get reset only dependencies changes otherwise it will maintin the same data
+   - No async operation inside the useMemo , not even set function
+
+useCallback - execute task but not Automatically
+   - need to trigger manually or on some DOM events like on click , on submit
+   - You can async operation and call set function
+   - useCallback will get recreated when it dependencies changes
+
+useEffect - execute task but Automatically
+   - triggerd Automatically
+   - You can async operation and call set function
+
+
+useMemo - 
+   -  triggerd Automatically
+   -  Async operation not allowed
+
+useCallback - 
+   - triggerd Manually
+   - Async operation allowed
+
+useEffect - 
+    - triggerd Automatically
+   -  Async operation allowed
+   
+   
