@@ -1,0 +1,32 @@
+Trigger automatically you can async operation - useEffect
+    - Watch for some data and execute some task based on the change
+    - Trigger some api whenever we mount the component
+    - To create async Events - 
+    addEventListener(removeEventListener) , 
+    setTimeout(clearTimeout) , 
+    setInterval(clearInterval) , 
+    fetch(native http client) - (AbortController),
+    axios(third party http client) - (AbortController),
+         - You must clear event when component unmount otherwise it will lead do memory leak
+            - clear event should be done in return statement of the useEffect
+
+            useEffect(()=>{
+                 eventA
+                 return ()=>{
+                    clearEventA()
+                 }
+            },[])
+
+Trigger automatically but no async operation - UseMemo
+    - sync operation and always return something
+    - No async and no setFunction
+    - 
+Trigger Manually and you can do async operation - UseCallback
+    - async operation
+
+
+Page 1 - Triggered API (delay)
+Page 2 - here (now you got response of page 1 api)
+
+
+

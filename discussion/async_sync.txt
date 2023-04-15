@@ -1,0 +1,11 @@
+//line1-sync (if)
+//line2 -sync(for - 1lakh) 0.5 sec
+//line3-sync(console.log())
+
+//line1-sync (if)
+//line2 -async(api) (take 1 sec)
+//line3-sync(console.log())
+  
+
+Heap - Stack - WebAPI - EventQueue -EventLoop - Stack 
+Heap - Stacy
