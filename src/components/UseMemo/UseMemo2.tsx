@@ -2,9 +2,30 @@ import { useCallback, useMemo, useState } from "react";
 
 const UseMemo2 = () => {
   const [gender, setGender] = useState("Female");
+  const listenForGenderChange = useCallback((dataFromInput:any)=>{
+    console.log(dataFromInput.target.value);
+    setGender(dataFromInput.target.value);
+  },[])
+
+
   const [maritalStatus, setMaritalStaus] = useState("Unmarried");
-  const [firstName, setFirstName] = useState("Rajini");
-  const [lastName, setLastName] = useState("Kanth");
+  const listenForMartialstatusChange = useCallback((dataFromInput:any)=>{
+    console.log(dataFromInput.target.value);
+    setMaritalStaus(dataFromInput.target.value);
+  },[])
+
+  const [firstName, setFirstName] = useState<string>("Rajini");
+  const listenForFirstNameChange = useCallback((dataFromInput:any)=>{
+    console.log(dataFromInput.target.value);
+    const input = dataFromInput.target.value.length;
+    setFirstName(("a").repeat(input));
+  },[])
+
+  const [lastName, setLastName] = useState<string>("Kanth");
+  const listenForSecondNameChange = useCallback((dataFromInput:any)=>{
+    console.log(dataFromInput.target.value);
+    setLastName(dataFromInput.target.value);
+  },[])
 
   const fullName = useMemo(() => {
     if (gender === "Male") {
@@ -20,23 +41,6 @@ const UseMemo2 = () => {
     }
   }, [firstName, gender, lastName, maritalStatus]);
 
-  const listenForFirstNameChange = useCallback((dataFromInput:any)=>{
-    console.log(dataFromInput.target.value);
-    const input = dataFromInput.target.value.length;
-    setFirstName(("a").repeat(input));
-  },[])
-  const listenForSecondNameChange = useCallback((dataFromInput:any)=>{
-    console.log(dataFromInput.target.value);
-    setLastName(dataFromInput.target.value);
-  },[])
-  const listenForGenderChange = useCallback((dataFromInput:any)=>{
-    console.log(dataFromInput.target.value);
-    setGender(dataFromInput.target.value);
-  },[])
-  const listenForMartialstatusChange = useCallback((dataFromInput:any)=>{
-    console.log(dataFromInput.target.value);
-    setMaritalStaus(dataFromInput.target.value);
-  },[])
 
   return (
     <>
