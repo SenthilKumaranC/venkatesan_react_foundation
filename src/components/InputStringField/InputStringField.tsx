@@ -23,6 +23,7 @@ const InputStringField = (props: IInputStringField) => {
 
   return (
     <input
+      name={props.name}
       placeholder={props.placeholder}
       value={value}
       onChange={listenForValueChange}

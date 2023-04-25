@@ -1,4 +1,6 @@
 import { FormEvent, useCallback, useRef } from "react";
+import InputRadioGroupField from "../InputRadioGroupField/InputRadioGroupField";
+import InputSelectField from "../InputSelectField/InputSelectField";
 import InputStringField from "../InputStringField/InputStringField";
 import "./Form.css";
 
@@ -57,7 +59,47 @@ const Form = () => {
           placeholder="Enter Phone No"
           onChange={informParent}
         />
-        
+
+        <InputRadioGroupField
+          name="gender"
+          defaultOption={"male"}
+          options={[
+            { id: "male", displayValue: "Male" },
+            { id: "female", displayValue: "Female" },
+            { id: "transgender", displayValue: "Transgender" },
+          ]}
+          onChange={informParent}
+          optionGroupName={"Choose Gender"}
+        />
+
+        <InputRadioGroupField
+          name="color"
+          defaultOption={"blue"}
+          options={[
+            { id: "green", displayValue: "Green" },
+            { id: "red", displayValue: "Red" },
+            { id: "blue", displayValue: "Blue" },
+            { id: "orange", displayValue: "Orange" },
+            { id: "yellow", displayValue: "Yellow" },
+          ]}
+          onChange={informParent}
+          optionGroupName={"Choose Fav Color"}
+        />
+
+        <InputSelectField
+          name="color"
+          defaultOption={"blue"}
+          options={[
+            { id: "gender", displayValue: "Choose Gender", header:true },
+            { id: "male", displayValue: "Male" , header:false },
+            { id: "female", displayValue: "Female" , header:false },
+            { id: "colors", displayValue: "Choose Colors" , header:true },
+            { id: "orange", displayValue: "Orange" , header:false },
+            { id: "yellow", displayValue: "Yellow" , header:false },
+          ]}
+          onChange={informParent}
+          optionGroupName={"Choose Fav Color"}
+        />
 
         <button type="submit">Submit</button>
       </form>
