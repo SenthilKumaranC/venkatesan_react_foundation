@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export interface IInputStringField {
   name: string;
@@ -9,17 +9,28 @@ export interface IInputStringField {
 
 const InputStringField = (props: IInputStringField) => {
   const [value, setValue] = useState(props.defaultValue);
+  const [valid, setValid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const listenForValueChange = useCallback(
-    (dataFromInput: any) => {
-      const input = dataFromInput.target.value;
-      //this is local
-      setValue(input);
-      //this is for parent
-      props.onChange(props.name,input);
-    },
-    [props]
-  );
+  useEffect(() => {
+    if (!!value) {
+      //if(value!==null || value!==undefined || value!==""){
+      setValid(true);
+      setErrorMessage("");
+    } else {
+      setValid(false);
+      setErrorMessage("Please enter some First Name");
+    }
+  }, [errorMessage, props, valid, value]);
+
+  useEffect(() => {
+    props.onChange({ value, name: props.name, valid, errorMessage });
+  }, [errorMessage, props, valid, value]);
+
+  const listenForValueChange = useCallback((dataFromInput: any) => {
+    const input = dataFromInput.target.value;
+    setValue(input);
+  }, []);
 
   return (
     <input

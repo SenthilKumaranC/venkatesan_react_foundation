@@ -4,19 +4,25 @@ import InputSelectField from "../InputSelectField/InputSelectField";
 import InputStringField from "../InputStringField/InputStringField";
 import "./Form.css";
 
+export interface IChildData {
+  name: keyof IForm;
+  value: any;
+  valid?: boolean;
+  errorMessage?: string;
+}
 export interface IForm {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
+  firstName: IChildData;
+  lastName: IChildData;
+  email: IChildData;
+  phone: IChildData;
 }
 
 const Form = () => {
   const formData = useRef<IForm>({
-    firstName: "Rajini",
-    lastName: "Kanth",
-    email: "",
-    phone: "",
+    firstName: { value: "Rajini", name: "firstName" },
+    lastName: { value: "Kanth", name: "lastName" },
+    email: { value: "", name: "email" },
+    phone: { value: "", name: "phone" },
   });
 
   const sendToServer = useCallback((e: FormEvent<HTMLFormElement>) => {
@@ -24,8 +30,9 @@ const Form = () => {
   }, []);
 
   const informParent = useCallback(
-    (childName: keyof IForm, childValue: any) => {
-      formData.current[childName] = childValue;
+    ({ value, name, valid, errorMessage }: IChildData) => {
+      formData.current[name] = { value, valid, errorMessage, name };
+      //formData.current[childName] = childValue;
       console.log(formData.current);
     },
     []
@@ -36,26 +43,26 @@ const Form = () => {
       <form className="Form" onSubmit={sendToServer}>
         <InputStringField
           name={"firstName"}
-          defaultValue={formData.current.firstName}
+          defaultValue={formData.current.firstName.value}
           placeholder="Enter First Name"
           onChange={informParent}
         />
         <InputStringField
           name="lastName"
-          defaultValue={formData.current.lastName}
+          defaultValue={formData.current.lastName.value}
           placeholder="Enter Last Name"
           onChange={informParent}
         />
         <InputStringField
           name="email"
-          defaultValue={formData.current.email}
+          defaultValue={formData.current.email.value}
           placeholder="Enter Email"
           onChange={informParent}
         />
 
         <InputStringField
           name="phone"
-          defaultValue={formData.current.phone}
+          defaultValue={formData.current.phone.value}
           placeholder="Enter Phone No"
           onChange={informParent}
         />
@@ -90,12 +97,10 @@ const Form = () => {
           name="color"
           defaultOption={"blue"}
           options={[
-            { id: "gender", displayValue: "Choose Gender", header:true },
-            { id: "male", displayValue: "Male" , header:false },
-            { id: "female", displayValue: "Female" , header:false },
-            { id: "colors", displayValue: "Choose Colors" , header:true },
-            { id: "orange", displayValue: "Orange" , header:false },
-            { id: "yellow", displayValue: "Yellow" , header:false },
+            { id: "male", displayValue: "Male", header: false },
+            { id: "female", displayValue: "Female", header: false },
+            { id: "orange", displayValue: "Orange", header: false },
+            { id: "yellow", displayValue: "Yellow", header: false },
           ]}
           onChange={informParent}
           optionGroupName={"Choose Fav Color"}

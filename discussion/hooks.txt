@@ -30,3 +30,23 @@ Page 2 - here (now you got response of page 1 api)
 
 
 
+
+
+
+useState - modification = manual(setState) , Trigger Render = yes , raw data
+useRef -  modification = manual(use current) , Trigger Render = no , raw data
+useMemo - modification = automatic , this will execute automa after render or before render ? after render
+
+const age = useRef();
+
+age.current = 25;
+
+age.current
+
+
+useState
+useRef
+useMemo
+useCallback
+Reusable Form 
+   Valida

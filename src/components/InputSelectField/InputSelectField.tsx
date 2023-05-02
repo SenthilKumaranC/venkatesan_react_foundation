@@ -25,14 +25,12 @@ const InputSelectField = (props: IInputSelectField) => {
   return (
     <div>
       {props.optionGroupName}
-      <select>
+      <select value={selectedOption} onChange={listenForValueChange}>
         {props.options.map((_option, index) => (
           <option
             disabled={_option.header}
             key={_option.id}
-            selected={_option.id === selectedOption}
             value={_option.id}
-            onChange={listenForValueChange}
           >
             {_option.displayValue}
           </option>
